@@ -15,7 +15,7 @@ export default class APIService {
             const { data } = await this.axiosInstance.request(config);
             return data;
         } catch (error) {
-            console.log(error.message);
+            alert(error.message);
         }
     }
     async getImage(query) {

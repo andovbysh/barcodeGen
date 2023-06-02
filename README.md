@@ -39,7 +39,7 @@ It's just an ordinary Vue application with a basic architecture open to any exte
 ## What can be improved
 
 - Validation: There is only basic one-time validation that disables a button when no content is entered.
-- Error handling: I reused my usual service for the API, and its implementation involves a custom validation system, which is not present in this application. So, there's only a console log for errors.
+- Error handling: I reused my usual service for the API, and its implementation involves a custom validation system, which is not present in this application. So, there's only an alert for errors.
 - Design: Obviously.
 
 

@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default class APIService {
     axiosInstance;
-    baseUrl = 'https://products.aspose.app/barcode/embed/';
+    baseUrl = '/api';
 
     constructor() {
         this.axiosInstance = axios.create({
@@ -19,7 +19,7 @@ export default class APIService {
         }
     }
     async getImage(query) {
-        return this.axiosCall({method: "get", url:`${query}`, responseType: 'blob'})
+        return this.axiosCall({method: "get", url:`/barcode/embed/${query}`, responseType: 'blob'})
     }
 }
 

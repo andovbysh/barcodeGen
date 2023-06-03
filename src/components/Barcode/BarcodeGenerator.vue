@@ -25,12 +25,12 @@
 
           <input
               class="generator-form-input"
-              type="text"
+              type="number"
               placeholder="Width"
               v-model="barcodeOptions.Width">
           <input
               class="generator-form-input"
-              type="text"
+              type="number"
               placeholder="Height"
               v-model="barcodeOptions.Height">
       </div>
@@ -62,7 +62,6 @@ const barcodeOptions = reactive({
 
 // const isWidthValid = computed(() => /^\d+$/.test(barcodeOptions.Width));
 // const isHeightValid = computed(() => /^\d+$/.test(barcodeOptions.Height));
-// unused because I can't think of a good way of using it and too lazy to make a proper validation system for a test :)
 
 const query = computed(() => {
     const extension = `image.${barcodeExtension.value}?`;
@@ -84,7 +83,7 @@ function getBarcode(){
 function downloadBarcode(){
     let link = document.createElement('a');
     link.href = result.value;
-    link.download = '';
+    link.download = `barcode${barcodeOptions.Content}${barcodeExtension.value}`;
     link.click();
     link.remove();
 }

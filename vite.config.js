@@ -15,12 +15,6 @@ export default defineConfig({
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
-      "/asposetest/api": {
-        target: "https://products.aspose.app",
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
     },
   },
   resolve: {

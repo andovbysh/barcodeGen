@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default class APIService {
     axiosInstance;
-    baseUrl = '/api';
+    baseUrl = 'https://products.aspose.app';
 
     constructor() {
         this.axiosInstance = axios.create({

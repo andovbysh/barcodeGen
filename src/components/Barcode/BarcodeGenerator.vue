@@ -35,7 +35,7 @@
               v-model="barcodeOptions.Height">
       </div>
 
-      <button class="generator-button" :disabled="!barcodeOptions.Content" @click="getBarcode()">Generate</button>
+      <button class="generator-button" :disabled="!barcodeOptions.Content" @click="generateBarcodeLink()">Generate</button>
       <button
           v-if="result"
           class="generator-button"
@@ -47,7 +47,7 @@
 <script setup>
 
 import BarcodeImage from "@/components/Barcode/BarcodeImage.vue";
-import {computed, reactive, ref} from "vue";
+import {reactive, ref} from "vue";
 import {barcodeExtensions, barcodeTypes} from "@/components/Barcode/resource/constants";
 import {API} from "@/services/apiService";
 import {useQueryGenerator} from "@/composables/queryGenerator";
@@ -64,18 +64,21 @@ const barcodeOptions = reactive({
 // const isWidthValid = computed(() => /^\d+$/.test(barcodeOptions.Width));
 // const isHeightValid = computed(() => /^\d+$/.test(barcodeOptions.Height));
 
-
 let query = useQueryGenerator(barcodeOptions, barcodeExtension.value);
 
 let result = ref('');
-function getBarcode(){
-    API.getImage(query.value)
-        .then((payload) => result.value = URL.createObjectURL(payload))
+function generateBarcodeLink(){
+    console.log(`${API.baseUrl}${query.value}`)
+    console.log(API.baseUrl)
+    console.log(query.value)
+    result.value = `${API.baseUrl}/${query.value}`
+    console.log(result.value, 'hey')
 }
 
 function downloadBarcode(){
     let link = document.createElement('a');
     link.href = result.value;
+    link.target = '_blank';
     link.download = `barcode${barcodeOptions.Content}${barcodeExtension.value}`;
     link.click();
     link.remove();

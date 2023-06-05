@@ -50,6 +50,7 @@ import BarcodeImage from "@/components/Barcode/BarcodeImage.vue";
 import {computed, reactive, ref} from "vue";
 import {barcodeExtensions, barcodeTypes} from "@/components/Barcode/resource/constants";
 import {API} from "@/services/apiService";
+import {useQueryGenerator} from "@/composables/queryGenerator";
 
 let barcodeExtension = ref('Jpeg');
 
@@ -63,16 +64,8 @@ const barcodeOptions = reactive({
 // const isWidthValid = computed(() => /^\d+$/.test(barcodeOptions.Width));
 // const isHeightValid = computed(() => /^\d+$/.test(barcodeOptions.Height));
 
-const query = computed(() => {
-    const extension = `image.${barcodeExtension.value}?`;
 
-    const filteredOptions = Object.entries(barcodeOptions).filter(option => option[1] !== '')
-    const options = filteredOptions.reduce((str, [key, val]) => {
-        return `${str}${key}=${val}&`
-    }, '')
-
-    return `${extension}${options.slice(0, -1)}`;
-})
+let query = useQueryGenerator(barcodeOptions, barcodeExtension.value);
 
 let result = ref('');
 function getBarcode(){

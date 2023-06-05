@@ -68,11 +68,7 @@ let query = useQueryGenerator(barcodeOptions, barcodeExtension.value);
 
 let result = ref('');
 function generateBarcodeLink(){
-    console.log(`${API.baseUrl}${query.value}`)
-    console.log(API.baseUrl)
-    console.log(query.value)
     result.value = `${API.baseUrl}/${query.value}`
-    console.log(result.value, 'hey')
 }
 
 function downloadBarcode(){
